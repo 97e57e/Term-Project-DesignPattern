@@ -11,19 +11,27 @@ public class UserInterface {
 	
 	Scanner scan;
 	
+	TraverseController controller;
+	
+	/* Parse Condition */
 	private String address;
 	private String inputName;
 	
+	/* Procedure Condition */
 	boolean isFinish;
 	int run_code;
 	
+	/* Jsoup Object */
 	Document doc;
+	Elements elems;
 	
 	private UserInterface() {
 		scan = new Scanner(System.in);
 		isFinish = false;
+		controller = new TraverseController();
 	}
 	
+	/* Singleton */
 	public static UserInterface getUserInterface() {
 		if (userInterface == null) {
 			userInterface = new UserInterface();
@@ -38,13 +46,15 @@ public class UserInterface {
 			System.out.print("주소를 입력 해 주세요 : ");
 			address = scan.nextLine();
 			
-			System.out.println(address + "를 가져옵니다.\n");
+			System.out.println("\n"+ address + " 를 가져오는중....");
+			
+			/*문서 가져오기*/
+			try {
+			doc = Jsoup.connect(address).get();
+			System.out.println("문서 가져오기 완료.\n");
+			}catch(Exception e) {}
 			
 			while(true) {
-				/*문서 가져오기*/
-				try {
-				doc = Jsoup.connect(address).get();
-				}catch(Exception e) {}
 				
 				System.out.println(" *** 무엇을 할까요? ***");
 				System.out.println("1. Search by ClassName");
@@ -68,17 +78,28 @@ public class UserInterface {
 					inputName = "#" + inputName;
 					break;
 				}
+				
+				/* 조건에 따른 CSS query */
 				Elements els = doc.select(inputName);
+				
 				if (els == null) {
 					System.out.println("결과가 없습니다.");
 				} else {
-					System.out.println(els);
+					System.out.println(els + "\n");
+					
+					/* Query Results 의 행동 UP / DOWN / NEXT / PREVIOUS */
+					controller.run(els);
 				}
 			}
+			
+			/* 프로그램 종료 조건 : 0 입력시 종료*/
 			if (run_code ==0) isFinish=true;
 		}
+		
+		System.out.println("프로그램을 종료합니다.");
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 }
