@@ -1,11 +1,10 @@
 package org.jsoup.userInterface;
 
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
 
 public class TraverseUp implements Traverse {
 
-	public Elements traverse(Elements els) {
-		System.out.println("UP!");
-		return els;
+	public Element traverse(Element e) {
+		return e.parent();
 	}
 }
