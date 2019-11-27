@@ -22,8 +22,8 @@ public class TraverseController {
 			System.out.println("3. NEXT!");
 			System.out.println("4. PREVIOUS!");
 			System.out.println("5. 그만두기");
-			if(run_code == 5 ) break;
 			run_code = sc.nextInt();
+			if(run_code == 5 ) break;
 			
 			/* Strategy Pattern */
 			switch(run_code) {
