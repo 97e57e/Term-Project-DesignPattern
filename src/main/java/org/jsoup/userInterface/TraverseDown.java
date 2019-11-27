@@ -10,7 +10,7 @@ public class TraverseDown implements Traverse{
 			return e;
 		}
 		e = e.child(0);
-		System.out.println("\n( " + 1 + " / " + e.childNodeSize() + " )");
+		System.out.println("\n( " + 1 + " / " + e.elementSiblingSize(e) + " )");
 
 		return e;
 	}
