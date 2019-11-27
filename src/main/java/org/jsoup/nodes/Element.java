@@ -759,6 +759,16 @@ public class Element extends Node {
        if (parent() == null) return 0;
        return indexInList(this, parent().childElementsList());
     }
+    
+    public int elementSiblingSize(Element e) {
+    	int size = 1;
+    	e = e.parent().child(0);
+    	while( e.nextElementSibling() != null ) {
+    		e = e.nextElementSibling();
+    		size++;
+    	}
+    	return size;
+    }
 
     /**
      * Gets the last element sibling of this element
