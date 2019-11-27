@@ -1,9 +1,11 @@
 package org.jsoup.userInterface;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class UserInterface {
@@ -20,6 +22,7 @@ public class UserInterface {
 	/* Procedure Condition */
 	boolean isFinish;
 	int run_code;
+	int current_position = 0;
 	
 	/* Jsoup Object */
 	Document doc;
@@ -82,14 +85,40 @@ public class UserInterface {
 				/* 조건에 따른 CSS query */
 				Elements els = doc.select(inputName);
 				
-				if (els == null) {
+				if (els.size() == 0 ) {
 					System.out.println("결과가 없습니다.");
 				} else {
+					System.out.println("\n" + els.size() + "개의 " + inputName.substring(1, inputName.length()) + "을(를) 찾았습니다.");
 					System.out.println(els.get(0));
 					System.out.println("( " + 1 + " / " + els.size() + " )\n");
-					
+					Element e = els.get(0);
+					while(true) {
+						System.out.println("1. NEXT ");
+						System.out.println("2. PREVIOUS");
+						System.out.println("3. 결정");
+						run_code = scan.nextInt();
+						if (run_code == 3)break;
+						
+						if(run_code == 1) {
+							if (current_position == els.size()- 1) {
+								System.err.println("마지막 입니다.");
+							} else {
+								e = els.get(current_position);
+								current_position++;
+							}
+						} else if (run_code ==2) {
+							if (current_position==0) {
+								System.err.println("첫 번째 입니다.");
+							} else {
+								e = els.get(current_position);
+								current_position--;
+							}
+						}
+						System.out.println("\n( " + Integer.toString(current_position+1) + " / " + els.size() + " )");
+						System.out.println(e);
+					}
 					/* Query Results 의 행동 UP / DOWN / NEXT / PREVIOUS */
-					controller.run(els);
+					controller.run(e);
 				}
 			}
 			

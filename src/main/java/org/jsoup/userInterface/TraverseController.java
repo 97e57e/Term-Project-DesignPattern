@@ -13,8 +13,7 @@ public class TraverseController {
 	
 	public TraverseController() {}
 	
-	public void run(Elements els) {
-		Element e = els.get(0);
+	public void run(Element e) {
 		while(true) {
 			System.out.println("무슨 행동을 할까유?");
 			System.out.println("1. UP!");
