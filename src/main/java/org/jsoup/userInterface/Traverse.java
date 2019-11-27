@@ -1,7 +1,7 @@
 package org.jsoup.userInterface;
 
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
 
 public interface Traverse {
-	public Elements traverse(Elements els);
+	public Element traverse(Element els);
 }

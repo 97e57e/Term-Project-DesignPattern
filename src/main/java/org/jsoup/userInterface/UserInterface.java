@@ -85,7 +85,8 @@ public class UserInterface {
 				if (els == null) {
 					System.out.println("결과가 없습니다.");
 				} else {
-					System.out.println(els + "\n");
+					System.out.println(els.get(0));
+					System.out.println("( " + 1 + " / " + els.size() + " )\n");
 					
 					/* Query Results 의 행동 UP / DOWN / NEXT / PREVIOUS */
 					controller.run(els);
@@ -94,7 +95,7 @@ public class UserInterface {
 			
 			/* 프로그램 종료 조건 : 0 입력시 종료*/
 			if (run_code ==0) isFinish=true;
-		}
+		}	
 		
 		System.out.println("프로그램을 종료합니다.");
 	}

@@ -1,11 +1,11 @@
 package org.jsoup.userInterface;
 
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
 
 public class TraverseNext implements Traverse {
 	
-	public Elements traverse(Elements els) {
+	public Element traverse(Element e) {
 		System.out.println("Next!");
-		return els;
+		return e;
 	}
 }

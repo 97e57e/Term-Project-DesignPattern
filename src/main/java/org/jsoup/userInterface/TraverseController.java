@@ -2,16 +2,19 @@ package org.jsoup.userInterface;
 
 import java.util.Scanner;
 
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class TraverseController {
 	Traverse traverseBehavior;
 	Scanner sc = new Scanner(System.in);
 	int run_code;
+	private int current_index = 0;
 	
 	public TraverseController() {}
 	
 	public void run(Elements els) {
+		Element e = els.get(0);
 		while(true) {
 			System.out.println("무슨 행동을 할까유?");
 			System.out.println("1. UP!");
@@ -38,13 +41,21 @@ public class TraverseController {
 				break;
 			}
 			
-			els = traverseBehavior.traverse(els);
+			e = traverseBehavior.traverse(e);
+			System.out.println(e);
 		}
 	}
 	
 	
 	void setTraverseBehavior(Traverse tb) {
 		this.traverseBehavior = tb;
+	}
+	
+	public int getCurrent_index() {
+		return current_index;
+	}
+	public void setCurrent_index(int current_index) {
+		this.current_index = current_index;
 	}
 
 }
