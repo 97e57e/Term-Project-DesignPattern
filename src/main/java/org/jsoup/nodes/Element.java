@@ -761,13 +761,7 @@ public class Element extends Node {
     }
     
     public int elementSiblingSize(Element e) {
-    	int size = 1;
-    	e = e.parent().child(0);
-    	while( e.nextElementSibling() != null ) {
-    		e = e.nextElementSibling();
-    		size++;
-    	}
-    	return size;
+    	return e.parent().childElementsList().size();
     }
 
     /**
