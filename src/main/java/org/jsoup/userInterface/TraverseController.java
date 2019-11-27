@@ -21,7 +21,7 @@ public class TraverseController {
 			System.out.println("2. DOWN!");
 			System.out.println("3. NEXT!");
 			System.out.println("4. PREVIOUS!");
-			System.out.println("5. 그만두기\n");
+			System.out.println("5. 그만두기");
 			if(run_code == 5 ) break;
 			run_code = sc.nextInt();
 			
@@ -42,7 +42,7 @@ public class TraverseController {
 			}
 			
 			e = traverseBehavior.traverse(e);
-			System.out.println(e);
+			System.out.println(e + "\n");
 		}
 	}
 	

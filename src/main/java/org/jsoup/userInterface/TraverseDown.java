@@ -6,11 +6,11 @@ public class TraverseDown implements Traverse{
 	
 	public Element traverse(Element e) {
 		if (e.children().isEmpty()) {
-			System.out.println("더 이상 child가 없습니다.\n");
+			System.err.println("\n더 이상 child가 없습니다.");
 			return e;
 		}
 		e = e.child(0);
-		System.out.println("( " + 1 + " / " + e.childNodeSize() + " )\n");
+		System.out.println("\n( " + 1 + " / " + e.childNodeSize() + " )");
 
 		return e;
 	}

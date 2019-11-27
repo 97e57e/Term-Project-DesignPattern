@@ -8,7 +8,7 @@ public class TraverseUp implements Traverse {
 		if( e.hasParent() ) {
 			return e.parent();
 		} else {
-			System.out.println("더이상 부모 Element가 없습니다.");
+			System.err.println("\n더이상 부모 Element가 없습니다.");
 			return e;
 		}
 	}
