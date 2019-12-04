@@ -9,7 +9,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class UserInterface {
-	private static UserInterface userInterface = null;
 	
 	Scanner scan;
 	
@@ -35,9 +34,15 @@ public class UserInterface {
 	}
 	
 	/* Singleton */
+	private volatile static UserInterface userInterface = null;
+	
 	public static UserInterface getUserInterface() {
 		if (userInterface == null) {
-			userInterface = new UserInterface();
+			synchronized(UserInterface.class) {
+				if(userInterface == null) {
+					userInterface = new UserInterface();
+				}
+			}
 		}
 		return userInterface;
 	}
