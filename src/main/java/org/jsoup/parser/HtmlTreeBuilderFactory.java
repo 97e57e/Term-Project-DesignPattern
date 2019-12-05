@@ -1,5 +1,12 @@
 package org.jsoup.parser;
 
-public class HtmlTreeBuilderFactory {
+public class HtmlTreeBuilderFactory extends TreeBuilderFactory{
 
+	@Override
+	protected TreeBuilder createTreeBuilder() {
+		// TODO Auto-generated method stub
+		return new HtmlTreeBuilder();
+	}
+	
+	
 }
