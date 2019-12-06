@@ -1,10 +1,10 @@
 package org.jsoup.parser;
 
 public class TreeBuilderFactory {
-	public static TreeBuilder createXmlTreeBuilder() {
+	public static XmlTreeBuilder createXmlTreeBuilder() {
 		return new XmlTreeBuilder();
 	}
-	public static TreeBuilder createHtmlTreeBuilder() {
+	public static HtmlTreeBuilder createHtmlTreeBuilder() {
 		return new HtmlTreeBuilder();
 	}
 }
