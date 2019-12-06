@@ -1,7 +1,8 @@
 package org.jsoup.nodes;
 
-import org.jsoup.parser.HtmlTreeBuilder;
+
 import org.jsoup.parser.Parser;
+import org.jsoup.parser.TreeBuilderFactory;
 
 /**
  * Internal helpers for Nodes, to keep the actual node APIs relatively clean. A jsoup internal class, so don't use it as
@@ -22,6 +23,6 @@ final class NodeUtils {
      */
     static Parser parser(Node node) {
         Document doc = node.ownerDocument();
-        return doc != null && doc.parser() != null ? doc.parser() : new Parser(new HtmlTreeBuilder());
+        return doc != null && doc.parser() != null ? doc.parser() : new Parser(TreeBuilderFactory.createHtmlTreeBuilder());
     }
 }

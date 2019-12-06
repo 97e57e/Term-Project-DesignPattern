@@ -4,6 +4,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 
+
+
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.List;
@@ -103,7 +105,7 @@ public class Parser {
      * @return parsed Document
      */
     public static Document parse(String html, String baseUri) {
-        TreeBuilder treeBuilder = new HtmlTreeBuilder();
+        TreeBuilder treeBuilder = TreeBuilderFactory.createHtmlTreeBuilder();
         return treeBuilder.parse(new StringReader(html), baseUri, new Parser(treeBuilder));
     }
 
@@ -118,7 +120,7 @@ public class Parser {
      * @return list of nodes parsed from the input HTML. Note that the context element, if supplied, is not modified.
      */
     public static List<Node> parseFragment(String fragmentHtml, Element context, String baseUri) {
-        HtmlTreeBuilder treeBuilder = new HtmlTreeBuilder();
+        TreeBuilder treeBuilder = TreeBuilderFactory.createHtmlTreeBuilder();
         return treeBuilder.parseFragment(fragmentHtml, context, baseUri, new Parser(treeBuilder));
     }
 
@@ -134,7 +136,7 @@ public class Parser {
      * @return list of nodes parsed from the input HTML. Note that the context element, if supplied, is not modified.
      */
     public static List<Node> parseFragment(String fragmentHtml, Element context, String baseUri, ParseErrorList errorList) {
-        HtmlTreeBuilder treeBuilder = new HtmlTreeBuilder();
+        TreeBuilder treeBuilder = TreeBuilderFactory.createHtmlTreeBuilder();
         Parser parser = new Parser(treeBuilder);
         parser.errors = errorList;
         return treeBuilder.parseFragment(fragmentHtml, context, baseUri, parser);
@@ -148,7 +150,7 @@ public class Parser {
      * @return list of nodes parsed from the input XML.
      */
     public static List<Node> parseXmlFragment(String fragmentXml, String baseUri) {
-        XmlTreeBuilder treeBuilder = new XmlTreeBuilder();
+        TreeBuilder treeBuilder = TreeBuilderFactory.createXmlTreeBuilder();
         return treeBuilder.parseFragment(fragmentXml, baseUri, new Parser(treeBuilder));
     }
 
@@ -204,7 +206,7 @@ public class Parser {
      * @return a new HTML parser.
      */
     public static Parser htmlParser() {
-        return new Parser(new HtmlTreeBuilder());
+        return new Parser(TreeBuilderFactory.createHtmlTreeBuilder());
     }
 
     /**
@@ -213,6 +215,6 @@ public class Parser {
      * @return a new simple XML parser.
      */
     public static Parser xmlParser() {
-        return new Parser(new XmlTreeBuilder());
+        return new Parser(TreeBuilderFactory.createXmlTreeBuilder());
     }
 }
