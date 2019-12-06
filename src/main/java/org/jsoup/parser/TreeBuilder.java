@@ -49,7 +49,8 @@ abstract class TreeBuilder {
     }
 
     abstract List<Node> parseFragment(String inputFragment, Element context, String baseUri, Parser parser);
-
+    abstract List<Node> parseFragment(String inputFragment, String baseUri, Parser parser);
+    
     protected void runParser() {
         while (true) {
             Token token = tokeniser.read();
